@@ -1,6 +1,7 @@
 package app.wyyzzz.firstactivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -18,11 +19,20 @@ public class MainActivity extends AppCompatActivity {
 
     //在layout的xml文件button中注册android：onlick 可以省略一些代码
     public void button1(View view){
-        Intent intent = new Intent("app.wyyzzz.firstactivity.ACTION_START");
-        //intent.addCategory("app.wyyzzz.firstactivity.MY_CATEGORY");
+
+        //指定打电话的协议
+        /*Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:10086"));
+        intent.addCategory("app.wyyzzz.firstactivity.MY_CATEGORY");*/
+
+        //用intent向下一个活动传递数据
+        String data = "hello SecondActivity";
+        Intent intent = new Intent(MainActivity.this,SecondActivity.class);
+        intent.putExtra("extra_data",data);
         startActivity(intent);
     }
 
+    //Menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.main,menu);
