@@ -10,11 +10,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("MainActivity","Task id is"+getTaskId());
         setContentView(R.layout.main_layout);
     }
 
@@ -30,11 +31,15 @@ public class MainActivity extends AppCompatActivity {
         String data = "hello SecondActivity";
         Intent intent = new Intent(MainActivity.this,SecondActivity.class);
         intent.putExtra("extra_data",data);
-        startActivity(intent);*/
+        startActivity(intent);
 
-        //2.5.3返回数据给上一个活动
+        //2.3.5返回数据给上一个活动
         Intent intent = new Intent(MainActivity.this,SecondActivity.class);
-        startActivityForResult(intent ,1);
+        startActivityForResult(intent ,1);*/
+
+        //2.5.1standard启动模式
+        Intent intent = new Intent(MainActivity.this,SecondActivity.class);
+        startActivity(intent);
     }
 
     //Menu
@@ -70,6 +75,12 @@ public class MainActivity extends AppCompatActivity {
             default:
         }
         return true;
+    }
+
+    @Override
+    protected void onRestart(){
+        super.onRestart();
+        Log.d("MainActivity","onRestart");
     }
 
 }
